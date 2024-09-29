@@ -1,0 +1,45 @@
+{
+    "name": "My Productivity Tool",
+    "version": "0.1.0",
+    "description": "A tool to help complete tasks on time",
+    "permissions": ["storage", "tabs"],
+    "host_permissions": ["https://*.calendar.google.com/*"], 
+    "background": {
+
+        "//comment" : "A javascript file that runs separately from the main browser thread",
+        "service_worker": "background.js"
+
+    },
+
+    "content_scripts":[
+
+        {
+            "matches": ["https://*.calendar.google.com/*"],
+            "//comment" : "This file manipulates the DOM of the webpage the extension is using",
+            "js": ["contentScript.js"]
+        }
+    ],
+
+    "web_accessible_resources": [
+        {
+            "resources": [
+                
+            ],
+
+            "matches": ["https://*.calendar.google.com/*"]
+        }
+    ],
+
+    "action":{
+        "default_icon":{
+
+        },
+
+        "default_title": "My Productivity Tool",
+
+        "//comment" : "This file is the UI",
+        "default_popup": "popup.html"
+    },
+
+    "manifest_version": 3
+}
