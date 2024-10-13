@@ -15,17 +15,17 @@
     let video = ""; // the current video loaded
     let alreadyLoaded = false; // checks if the video already loaded
     let allTimestamps = []; // array that stores all timestamps
-    
+   
     hideRecs = () => {
         // hides the next recommended videos
-        let recVideos = document.getElementsByClassName("style-scope ytd-watch-next-secondary-results-renderer");
-        recVideos.innerHTML = "";
+        document.getElementsByClassName("style-scope ytd-watch-next-secondary-results-renderer")[1].remove();
+        console.log("recommended vids removed")
     }
 
     hideComms = () => {
         // hides the comment section
-        let comments = document.getElementById("comments")
-        comments.innerHTML = "";
+        document.getElementById("comments").remove();
+        console.log("comments removed")
     }
 
     getTimestamps = () => {
@@ -47,6 +47,9 @@
             video = videoId;
             newVideo();
             alreadyLoaded = True
+        }
+        else if (type === "PLAY"){
+            YouTubePlayer.currentTime = value;
         }
 
         // checks if the video was simply refreshed and is not new
@@ -75,9 +78,6 @@
         }
     }
 
-    hideRecs();
-    hideComms();
-
     // Adds a timestamp when the button is clicked
     addNewTimestamp = async () => {
 
@@ -105,4 +105,8 @@
 
         return date.toISOString().substring(11, 8);
     }
+
+    // waits for the recommended videos and the comment elements to load
+    setTimeout(hideRecs, 2000);
+    setTimeout(hideComms, 1000);
 })();
