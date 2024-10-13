@@ -1,1 +1,1 @@
-This is a browser extension I developed to block YouTube feed recommendations and comment sections. It helps me stay focused when doing work and listening to background music on YouTube.
+This is a browser extension that blocks YouTube feed recommendations, comment sections, and stores timestamps. It helps me stay focused when listening to background music on YouTube while studying.
