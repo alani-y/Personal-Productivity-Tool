@@ -73,9 +73,15 @@ const onDelete = async e => {
 // adds functionality to play and delete buttons
 // param: controlParentElement: a play or delete button
 const setTimestampAttributes = (eventListener, controlParentElement) => {
-    const controlElement = document.createElement("") // set to bootstrap icon
+    const controlElement = document.createElement("i") // set to bootstrap icon
 
-    controlElement.src = ""; // set to bootstrap icon for play or delete
+    // set to bootstrap icon for play or delete
+    if(eventListener === "play"){
+        controlElement.innerHTML = '<i class="bi bi-play-circle"></i>'; 
+    }
+    if(eventLister === "delete"){
+        controlElement.innerHTML = '<i class="bi bi-x-circle"></i>';
+    }
     controlElement.addEventListener("click", eventListener);
     controlParentElement.appendChild(controlElement);
 
