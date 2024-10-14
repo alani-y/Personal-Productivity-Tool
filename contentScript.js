@@ -66,8 +66,8 @@
 
         if (!timeStampBtnExists){
             // creates a button to create new timestamps
-            let timeStampBtn = document.createElement("icon");
-            timeStampBtn.src = chrome.runtime.getURL() // set this to bootstrap icons
+            let timeStampBtn = document.createElement("i");
+            timeStampBtn.innerHTML = '<i class="bi bi-plus-square"></i>' 
             timeStampBtn.className = "ytp-button" + "timestamp-btn"
             timeStampBtn.title = "Create new timestamp"
 
