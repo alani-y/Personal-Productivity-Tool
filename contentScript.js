@@ -1,13 +1,6 @@
 // This file manipulates the DOM of the YouTube Page
 (() => {
 
-    try{
-        document.requestStorageAccess();
-    }
-    catch (err){
-        console.log("access denied")
-    }
-
     console.log("content running")
 
     // Stores access to the video controls and play button
@@ -36,6 +29,9 @@
         });
     }
 
+    // param obj: 
+    // param sender:
+    // param response:
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const {type, value, videoId} = obj;
 
@@ -47,8 +43,12 @@
         }
         else if (type === "PLAY"){
             YouTubePlayer.currentTime = value;
+        } else if ( type === "DELETE") {
+            allTimestamps = allTimestamps.filter((b) => b.time != value);
+            chrome.storage.sync.set({ [currentVideo]: JSON.stringify(allTimestamps) });
+    
+            response(allTimestamps);
         }
-
         // checks if the video was simply refreshed and is not new
         if(!alreadyLoaded){
             newVideo();
@@ -90,8 +90,7 @@
 
         // adds the timestamp to storage
         chorme.storage.sync.set({
-            [video]: JSON.stringify
-            ([...allTimestamps, newTimestamp].sort((a, b) => a.time - b.time))
+            [video]: JSON.stringify([...allTimestamps, newTimestamp].sort((a, b) => a.time - b.time))
         });
     }
 
